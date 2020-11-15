@@ -1,0 +1,3 @@
+//String Controlling methods
+//Convert a String into an array 
+String array[] = string_variable.split("");
