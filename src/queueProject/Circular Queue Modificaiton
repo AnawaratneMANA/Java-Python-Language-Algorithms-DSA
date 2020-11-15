@@ -1,0 +1,89 @@
+//QueueX Class from the Additional Questions
+public class QueueX {
+    //Attributes
+    private int jobArr[];
+    private int maxValue;
+    private int front;
+    private int rear;
+    private int noOfItem;
+
+    //constructor
+    QueueX(int size){
+        this.maxValue = size;
+        this.front = 0;
+        this.rear = -1;
+        this.noOfItem = 0;
+        this.jobArr = new int[maxValue];
+    }
+    //method insert
+    public void insert(int value){
+        if(!isFull()){
+            //Circular Queue
+            if(rear == maxValue -1){
+                rear = -1;
+            }
+            jobArr[++rear] = value;
+            noOfItem++;
+        } else {
+            System.out.println("Queue is full");
+        }
+    }
+    //method removal
+    public int remove(){
+        int no = -9999;
+        if(!isEmpty()){
+            no = jobArr[front++];
+            if(front == maxValue){
+                front = 0;
+            }
+            noOfItem--;
+            return no;
+        } else
+        {
+            System.out.println("Queue is empty.");
+            return no;
+        }
+    }
+    //isFull and isEmpty method
+    public boolean isFull(){
+        if(noOfItem == maxValue){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isEmpty(){
+        if(noOfItem == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}
+
+
+//QueueX Application class from the Additional Questions
+import java.util.Scanner;
+
+public class QueueApplicaiton {
+    public static void main(String[] args) {
+        //Creating object from the Queue
+        QueueX q = new QueueX(5);
+        //Enter numbers
+        Scanner cin = new Scanner(System.in);
+        for(int a = 0; a<5;a++){
+            System.out.println("Enter JobID : ");
+            int number = cin.nextInt();
+            q.insert(number);
+        }
+
+        //removing statement
+        for(int a = 0; a<5;a++){
+            System.out.println("JobID " + q.remove());
+        }
+
+    }
+}
+
